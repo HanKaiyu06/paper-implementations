@@ -1,23 +1,50 @@
-# paper-implementations
+# Deep Learning Implementations & Experiments
+# 深度学习实现与实验
 
-论文方法实现与学习实验。按项目独立组织，当前收录从 Google Drive 导入的三个 Notebook。
+## 中文
 
-| 项目 | 内容 | 当前状态 |
+我在这个仓库中整理自己学习深度学习时编写的模型实现和实验，包括基于 MNIST 的 FGSM 对抗训练、从零实现的 Transformer 组件，以及 GPT-2 文本生成与困惑度实验。
+
+我希望通过亲手实现、检查代码和对比实验结果，更具体地理解模型结构、训练方法与评估方式。每个项目单独保留 Notebook、依赖说明和待改进事项。
+
+### 项目
+
+| 项目 | 我实现的内容 | 当前进度 |
 | --- | --- | --- |
-| [Adversarial Training](adversarial-training/) | MNIST、Maxout、FGSM 与对抗训练 | 原始实现归档；已识别评估与训练流程问题，结果待重新验证 |
-| [Transformer](transformer/) | 从零实现 Attention、Encoder、Decoder | 组件实现；掩码与初始化待修复，不代表原论文训练结果复现 |
-| [GPT-2 Generation](gpt2-generation/) | 预训练 GPT-2 生成、困惑度与候选筛选 | 学习实验；自定义生成函数待修复，不属于模型提取攻击 |
+| [对抗训练](adversarial-training/) | Maxout 网络、FGSM 攻击、对抗样本训练与准确率评估 | 初版代码已整理；需要修正扰动裁剪、评估计数，并明确训练方案后重新评测 |
+| [Transformer](transformer/) | 注意力、多头注意力、前馈网络、位置编码及 Encoder/Decoder | 组件实现已整理；需要修正掩码传递和参数初始化，补充前向与梯度检查 |
+| [GPT-2 生成](gpt2-generation/) | 预训练模型采样、困惑度计算、候选排序及温度递减生成函数 | 实验代码已整理；自定义生成函数的维度处理与边界条件需要修正 |
 
-## 使用方式
+### 如何查看与运行
 
-进入项目目录阅读 README，再打开对应 Notebook。各项目独立安装依赖，也可以使用 README 中的 Colab 原始入口。依赖列表仅从代码导入推导，未锁定已验证环境版本。
+进入项目目录阅读 README，再打开 Notebook。每个项目都有独立的 requirements.txt 和原始 Colab 链接。依赖清单来自代码中的导入，尚未固定经过验证的环境版本。
 
-本次整理保留代码单元内容与顺序，清除了运行输出、执行计数和运行环境元数据；没有重新训练模型或验证历史指标。各项目的已知问题见其 README，不能将归档状态视为可完整复现。
+### 进度与计划
 
-## 范围
+我保留了初版代码，并清除了旧运行输出，便于后续逐项修正和重新记录结果。目前只完成了 Notebook 格式和 Python 单元语法检查，尚未完成端到端运行验证。我会先修正对抗训练的评估流程，再检查 Transformer 和 GPT-2 实验。
 
-本仓库收录上述三个项目。原创数据集扰动实验、课程作业和其他研究材料不在本次整理范围内。
+这些项目记录了我的实现与学习过程。Transformer 目前是组件级实现，GPT-2 项目使用预训练模型；我尚未验证它们达到对应论文的实验结果。
 
-## 整理记录
+## English
 
-2026-10-27：从 Drive 的 paper-implementations 文件夹导入三个 Notebook，完成 JSON 与 Python 单元语法检查，添加项目说明与待办清单。尚未执行端到端训练、模型下载或性能评测。
+I use this repository to organize model implementations and experiments from my study of deep learning. It currently includes FGSM adversarial training on MNIST, Transformer components implemented from scratch, and experiments with GPT-2 text generation and perplexity.
+
+Through implementation, code review, and experimental comparisons, I aim to develop a more concrete understanding of model architectures, training methods, and evaluation. Each project has its own notebook, dependency list, and notes on remaining work.
+
+### Projects
+
+| Project | What I implemented | Current status |
+| --- | --- | --- |
+| [Adversarial training](adversarial-training/) | A Maxout network, FGSM attacks, training on adversarial examples, and accuracy evaluation | Initial code organized; perturbation clipping and evaluation counters need correction, followed by a clearly specified training setup and new evaluation |
+| [Transformer](transformer/) | Attention, multi-head attention, feed-forward networks, positional encoding, and encoder/decoder components | Components organized; mask propagation and parameter initialization need correction, followed by forward-pass and gradient checks |
+| [GPT-2 generation](gpt2-generation/) | Sampling from a pretrained model, perplexity calculation, candidate ranking, and a temperature-decay generation function | Code organized; the custom generation function needs tensor-shape fixes and input validation |
+
+### Getting started
+
+Read the README in each project directory before opening its notebook. Each project includes a separate requirements.txt and a link to the original Colab notebook. Dependencies were identified from imports; a verified environment has not yet been pinned.
+
+### Status and next steps
+
+I have retained the initial code and cleared its saved outputs so that I can document corrections and new results explicitly. Notebook structure and Python cell syntax have been checked, but end-to-end execution has not yet been validated. My next priority is the adversarial-training evaluation pipeline, followed by the Transformer and GPT-2 experiments.
+
+These projects document my implementation and learning process. The Transformer project currently covers components, and the GPT-2 project uses a pretrained model. I have not verified reproduction of the corresponding papers' experimental results.
