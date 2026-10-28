@@ -1,6 +1,39 @@
 # Adversarial Training / FGSM
 
-基于 MNIST 的 Maxout 网络、FGSM 攻击与对抗训练学习实现。
+I implemented a Maxout network, FGSM attacks, and training on adversarial examples using MNIST.
+
+- [Notebook](experiment.ipynb)
+- [Original Colab](https://colab.research.google.com/drive/1zAywVl_M9CWkHQEgP-qjt8ZP9wjPOOZu)
+- Source file: Adversarial_Training_FGSM.ipynb
+
+## Experiment setup
+
+The Maxout network has dimensions 784 → 240 → 240 → 10 with a pool size of 5. I use Adam with a learning rate of 0.001, a batch size of 128, and 5 epochs. FGSM uses epsilon = 0.07. MNIST is downloaded through torchvision and converted with ToTensor to pixel values in [0,1].
+
+## Running the notebook
+
+Install the dependencies in this directory's requirements.txt, then open experiment.ipynb in Jupyter or Colab. Running it downloads MNIST, trains the models, and saves maxout_mnist.pth. The issues below need to be addressed before I can report reliable reproduction results.
+
+## Code review notes
+
+Cell numbers start at 0.
+
+- Cells 8 and 10: adversarial inputs are not clipped to [0,1]. Training and evaluation need the same perturbation constraints.
+- Cells 11 and 12: a fixed adversarial training set is generated using the earlier model, then used to train a newly initialized model. For online adversarial training, attacks should instead be generated against the current model in each batch.
+- Cell 15: total/correct are not reset, so the final accuracy includes counts from an earlier evaluation and is unreliable.
+- Cell 5: evaluation should explicitly call model.eval(). The current network has no dropout or batch normalization, but the evaluation procedure should still be consistent.
+- Both models need clean accuracy and white-box FGSM accuracy measured on the same test set at the same epsilon. Cell 14 already generates attacks against the new model; I will preserve this approach.
+- Random seeds and environment versions have not been fixed or recorded. Results need to be rerun with documented settings.
+
+## Next steps
+
+I will first fix clipping and evaluation counters, specify whether the experiment uses online adversarial training or a fixed attack dataset, and reevaluate under consistent conditions. Only source-code syntax has been checked so far; I have not validated reproduction of the paper's results.
+
+---
+
+# Adversarial Training / FGSM
+
+我基于 MNIST 实现了 Maxout 网络、FGSM 攻击和对抗样本训练。
 
 - [Notebook](experiment.ipynb)
 - [原始 Colab](https://colab.research.google.com/drive/1zAywVl_M9CWkHQEgP-qjt8ZP9wjPOOZu)
