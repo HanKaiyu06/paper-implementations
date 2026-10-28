@@ -1,6 +1,32 @@
 # Transformer from Scratch
 
-手写缩放点积注意力、多头注意力、FFN、正弦位置编码及六层 Encoder/Decoder。
+I implemented scaled dot-product attention, multi-head attention, feed-forward networks, sinusoidal positional encoding, and six-layer encoder and decoder stacks.
+
+- [Notebook](transformer.ipynb)
+- [Original Colab](https://colab.research.google.com/drive/1jEmb9UCrsre20SnR6k2kZKjU_YpJvpql)
+- Source file: Transformer_From_Scratch.ipynb
+
+## Implementation
+
+The model uses a hidden dimension of 512, 8 attention heads, a feed-forward dimension of 2048, and dropout of 0.1. The final example uses a source sequence of length 4 and a target sequence of length 3, with intended output shapes of (4,512) and (3,512).
+
+Install requirements.txt and run the notebook in order in Jupyter or Colab. These shapes describe the intended behavior; I have not yet validated the forward pass in this version.
+
+## Known issues
+
+- W_Q/W_K/W_V/W_O are all initialized to zero, making the attention branch degenerate. They need appropriate nonzero initialization.
+- MultiHeadAttention.forward accepts mask but does not pass it to Attention, so the decoder's causal mask is not applied.
+- Attention uses K.T and two-dimensional loops, supporting only unbatched two-dimensional inputs. A general implementation should operate on the final two dimensions.
+- PE creates its tensor on the CPU. It needs to match the input's device and dtype for GPU execution.
+- The decoder currently returns hidden states. A vocabulary projection, training loss, data pipeline, and evaluation are still missing.
+
+This is a component implementation. My next checks will cover output shapes, gradients, and whether changing future tokens leaves earlier outputs unchanged. I have not reproduced the original paper's training results.
+
+---
+
+# Transformer from Scratch
+
+我手写了缩放点积注意力、多头注意力、FFN、正弦位置编码及六层 Encoder/Decoder。
 
 - [Notebook](transformer.ipynb)
 - [原始 Colab](https://colab.research.google.com/drive/1jEmb9UCrsre20SnR6k2kZKjU_YpJvpql)
