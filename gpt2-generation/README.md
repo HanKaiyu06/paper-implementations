@@ -1,6 +1,32 @@
 # GPT-2 Generation and Perplexity
 
-加载预训练 GPT-2，进行文本采样、困惑度计算和候选排序。这是生成实验，不是 Model Extraction Attack。
+I use pretrained GPT-2 to explore text sampling, perplexity, and candidate ranking. This project covers generation experiments, not model extraction attacks.
+
+- [Notebook](experiment.ipynb)
+- [Original Colab](https://colab.research.google.com/drive/1F9Gjw44VWP9w1EKH77zZr8nPS6xk2XRo)
+- Source file: GPT2_Generation_and_Perplexity.ipynb
+
+## Running the experiment
+
+Install requirements.txt and open the notebook in Jupyter or Colab. The first run needs internet access to download the gpt2 model and tokenizer. The notebook's installation cell installs transformers and accelerate; the dependency file also includes torch, which the code imports.
+
+The default experiment samples 100 candidates from the prompt The, with up to 30 new tokens per candidate and top-k=40, then ranks them by the model's own perplexity. I also defined a temperature-decay generation function, but the candidate-generation cell calls model.generate rather than this custom function.
+
+## Known issues and interpretation
+
+- The custom generation function concatenates two-dimensional input_ids with one-dimensional next_token, causing a shape mismatch. Decoding should also receive a single sequence.
+- decay_steps=1 causes division by zero. Temperature, top_k, and length parameters need validation.
+- Perplexity calculation needs to handle texts with fewer than 2 tokens and inputs beyond the context window. A numerically stable cross-entropy calculation in inference mode would be preferable.
+- Generation and scoring should explicitly use model.eval() with gradients disabled. Random seeds and environment versions also need to be recorded.
+- Ranking a model's own samples by its perplexity does not establish improvements in factual accuracy, quality, or safety.
+
+The current version has been organized and statically reviewed. I have not rerun model loading or generation, and no new experimental results are reported.
+
+---
+
+# GPT-2 Generation and Perplexity
+
+我使用预训练 GPT-2，进行文本采样、困惑度计算和候选排序。这是生成实验，不是 Model Extraction Attack。
 
 - [Notebook](experiment.ipynb)
 - [原始 Colab](https://colab.research.google.com/drive/1F9Gjw44VWP9w1EKH77zZr8nPS6xk2XRo)
