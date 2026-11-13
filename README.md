@@ -8,8 +8,8 @@ Through implementation, code review, and experimental comparisons, I aim to deve
 
 | Project | What I implemented | Current status |
 | --- | --- | --- |
-| [Adversarial training](adversarial-training/) | A Maxout network, FGSM attacks, training on adversarial examples, and accuracy evaluation | Initial code organized; perturbation clipping and evaluation counters need correction, followed by a clearly specified training setup and new evaluation |
-| [Transformer](transformer/) | Attention, multi-head attention, feed-forward networks, positional encoding, and encoder/decoder components | Components organized; mask propagation and parameter initialization need correction, followed by forward-pass and gradient checks |
+| [Adversarial training](adversarial-training/) | A Maxout network, FGSM attacks, training on adversarial examples, and accuracy evaluation | Online FGSM and mixed clean/adversarial loss implemented; saved Colab results available; clipping and broader evaluation remain |
+| [Transformer](transformer/) | Attention, multi-head attention, feed-forward networks, positional encoding, and encoder/decoder components | Initialization and mask propagation corrected; saved forward, causal and gradient checks available |
 | [GPT-2 generation](gpt2-generation/) | Sampling from a pretrained model, perplexity calculation, candidate ranking, and a temperature-decay generation function | Code organized; the custom generation function needs tensor-shape fixes and input validation |
 
 ### Getting started
@@ -18,7 +18,7 @@ Read the README in each project directory before opening its notebook. Each proj
 
 ### Status and next steps
 
-I have retained the initial code and cleared its saved outputs so that I can document corrections and new results explicitly. Notebook structure and Python cell syntax have been checked, but end-to-end execution has not yet been validated. My next priority is the adversarial-training evaluation pipeline, followed by the Transformer and GPT-2 experiments.
+On 2026-11-13, the adversarial-training and Transformer notebooks were synced from their current Colab versions with saved outputs preserved. Their READMEs distinguish recorded results from remaining limitations. This sync did not rerun training. GPT-2 remains at its earlier reviewed state.
 
 These projects document my implementation and learning process. The Transformer project currently covers components, and the GPT-2 project uses a pretrained model. I have not verified reproduction of the corresponding papers' experimental results.
 
@@ -34,8 +34,8 @@ These projects document my implementation and learning process. The Transformer 
 
 | 项目 | 我实现的内容 | 当前进度 |
 | --- | --- | --- |
-| [对抗训练](adversarial-training/) | Maxout 网络、FGSM 攻击、对抗样本训练与准确率评估 | 初版代码已整理；需要修正扰动裁剪、评估计数，并明确训练方案后重新评测 |
-| [Transformer](transformer/) | 注意力、多头注意力、前馈网络、位置编码及 Encoder/Decoder | 组件实现已整理；需要修正掩码传递和参数初始化，补充前向与梯度检查 |
+| [对抗训练](adversarial-training/) | Maxout 网络、FGSM 攻击、对抗样本训练与准确率评估 | 已修复计数并采用在线 FGSM 与混合损失，保留 Colab 结果；裁剪与更全面评估待补充 |
+| [Transformer](transformer/) | 注意力、多头注意力、前馈网络、位置编码及 Encoder/Decoder | 已修复初始化与掩码传递，保留前向、因果性与梯度检查输出 |
 | [GPT-2 生成](gpt2-generation/) | 预训练模型采样、困惑度计算、候选排序及温度递减生成函数 | 实验代码已整理；自定义生成函数的维度处理与边界条件需要修正 |
 
 ### 如何查看与运行
@@ -44,6 +44,6 @@ These projects document my implementation and learning process. The Transformer 
 
 ### 进度与计划
 
-我保留了初版代码，并清除了旧运行输出，便于后续逐项修正和重新记录结果。目前只完成了 Notebook 格式和 Python 单元语法检查，尚未完成端到端运行验证。我会先修正对抗训练的评估流程，再检查 Transformer 和 GPT-2 实验。
+2026-11-13：对抗训练和 Transformer 已同步当前 Colab 代码与保存输出，具体结果和剩余限制见各项目说明。本次同步未重新训练。GPT-2 保持此前版本。
 
 这些项目记录了我的实现与学习过程。Transformer 目前是组件级实现，GPT-2 项目使用预训练模型；我尚未验证它们达到对应论文的实验结果。
