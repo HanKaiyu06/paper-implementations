@@ -25,8 +25,6 @@ Saved notebook outputs from one training run per model, evaluated on all 10,000 
 
 FGSM adversarial training substantially improved FGSM accuracy, but PGD-20 still caused most inputs to be misclassified. The gap shows that FGSM evaluation alone does not adequately describe this model's robustness to multi-step attacks.
 
-This is a partial reproduction of the FGSM method, not the paper's full training setup. It uses one seed and a fixed five-epoch schedule without validation-based early stopping. Repeated-run statistics and verified dependency versions remain to be added. The results do not identify the cause of the FGSM–PGD gap.
-
 ## Run
 
 Install the dependencies in [requirements.txt](requirements.txt), then run the notebook from top to bottom. MNIST downloads automatically.
@@ -61,8 +59,6 @@ Reference: [Explaining and Harnessing Adversarial Examples](https://arxiv.org/ab
 | FGSM 对抗训练 | 97.33% | 72.81% | 2.12% |
 
 FGSM 对抗训练明显提高了 FGSM 评估准确率，但 PGD-20 仍能让大部分样本被误分类。因此，单看 FGSM 表现不足以判断这个模型面对多步攻击时的鲁棒性。
-
-目前复现了 FGSM 方法，尚未完整对齐论文训练设置。实验只有一个种子、固定训练 5 轮，没有验证集早停；多次运行统计和依赖版本验证尚未完成。现有结果还不能确定 FGSM 与 PGD 差距的原因。
 
 ## 运行
 
