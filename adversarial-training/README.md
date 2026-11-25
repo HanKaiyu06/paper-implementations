@@ -27,7 +27,7 @@ FGSM adversarial training substantially improved FGSM accuracy, but PGD-20 still
 
 ## Run
 
-Install the dependencies in [requirements.txt](requirements.txt), then run the notebook from top to bottom. MNIST downloads automatically.
+Install `torch` and `torchvision`, then run the notebook from top to bottom. MNIST downloads automatically.
 
 The notebook saves `maxout_mnist.pth` for the standard model and `maxout_mnist_fgsm_adv_eps025.pth` for the adversarially trained model in the runtime's working directory. These weights are generated when the notebook runs; they are not embedded in the notebook.
 
@@ -62,7 +62,7 @@ FGSM 对抗训练明显提高了 FGSM 评估准确率，但 PGD-20 仍能让大�
 
 ## 运行
 
-安装 [requirements.txt](requirements.txt) 中的依赖，按顺序运行 notebook，MNIST 会自动下载。
+安装 `torch` 和 `torchvision` 后，按顺序运行 notebook，MNIST 会自动下载。
 
 运行时会在当前目录生成普通模型权重 `maxout_mnist.pth` 和对抗模型权重 `maxout_mnist_fgsm_adv_eps025.pth`；权重文件不包含在 notebook 内。
 
